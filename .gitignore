@@ -18,4 +18,4 @@ logs/
 
 # Ignore rtMRI dataset
 dataset/*.avi
-dataset/*.matssss
+dataset/*.mat
