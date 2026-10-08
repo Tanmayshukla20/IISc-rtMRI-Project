@@ -1,12 +1,8 @@
-# IISc-rt-MRI-Project
-
-**This is the Project I made as a part of my internship at SPIRE Lab, IISc Bangaalore**
-
 # AI-Based Glottis Localization and Voiced/Unvoiced Classification from rtMRI
 
 An end-to-end AI/ML pipeline for **glottis localization and voiced/unvoiced speech classification using real-time MRI (rtMRI) speech data**.
 
-The project combines **computer vision, image-based deep learning, physiological feature engineering, and multimodal neural network fusion** to learn from both visual and geometric information related to the glottis.
+The project combines **computer vision, deep learning, physiological feature engineering, and multimodal neural network fusion** to learn from both visual and geometric information related to the glottis.
 
 ---
 
@@ -38,22 +34,67 @@ The main objectives of the project are:
 - Learn visual representations using a CNN.
 - Combine visual and physiological representations.
 - Perform voiced/unvoiced classification using a neural network.
-- Build an end-to-end reproducible ML pipeline.
+- Build an end-to-end ML pipeline.
 
 ---
 
-# 🧠 Model Architecture
+## 🧠 Model Architecture
 
-The core of the project is a **multimodal neural network** with two parallel branches.
+The core of the project is a **multimodal neural network with two parallel branches**.
 
 ### 1. Visual Branch
 
 The localized glottis ROI is resized to:
 
-```text
-224 × 224 × 3<img width="674" height="678" alt="Screenshot 2026-06-04 at 12 27 07 PM" src="https://github.com/user-attachments/assets/5701f049-2ef1-4245-a8a7-dae4702d9e4e" />
-<img width="794" height="647" alt="Screenshot 2026-02-08 at 6 58 41 PM" src="https://github.com/user-attachments/assets/17d86dec-3a62-47d9-941c-30db0a444406" />
-<img width="200" height="504" alt="Screenshot 2026-10-08 at 9 10 20 PM" src="https://github.com/user-attachments/assets/2434686b-88d5-4914-8b76-ab5ffe47c5cd" />
-<img width="700" height="417" alt="Screenshot 2026-10-08 at 7 54 32 PM" src="https://github.com/user-attachments/assets/29b0af7f-1843-465f-8957-8c9db02ac50f" />
+**224 × 224 × 3**
+
+A **ResNet18 CNN** is used to extract visual information from the glottis ROI.
+
+The CNN produces a:
+
+**512-dimensional visual representation**
+
+This branch learns spatial and visual patterns from the MRI region containing the glottis.
+
+---
+
+### 2. Physiological Feature Branch
+
+A separate fully connected neural network processes **8 engineered geometric and physiological features** describing the glottis.
+
+The features include:
+
+- Air pixels
+- Tissue pixels
+- Air-to-tissue ratio
+- Glottis length
+- ROI radius
+- ROI area
+- Contour curvature
+- Bulge depth
+
+The feature branch transforms these 8 input features into a:
+
+**32-dimensional physiological representation**
+
+---
+
+### 3. Multimodal Feature Fusion
+
+The visual and physiological representations are combined:
+
+
+Visual Representation        → 512
+Physiological Representation →  32
+Total = 544
+
+
+<img width="200" height="504" alt="Screenshot 2026-10-08 at 9 10 20 PM" src="https://github.com/user-attachments/assets/5f381e31-225b-4286-9fac-acc66daf44cf" />
+<img width="711" height="413" alt="Screenshot 2026-10-08 at 9 49 25 PM" src="https://github.com/user-attachments/assets/b1d5f472-166a-4682-8eb1-da65acce76f2" />
+
+
+
+
+
 
 
