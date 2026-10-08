@@ -15,3 +15,7 @@ outputs/
 logs/
 
 *.zip
+
+# Ignore rtMRI dataset
+dataset/*.avi
+dataset/*.matssss
