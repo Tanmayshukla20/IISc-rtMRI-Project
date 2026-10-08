@@ -17,5 +17,4 @@ logs/
 *.zip
 
 # Ignore rtMRI dataset
-dataset/*.avi
-dataset/*.mat
+dataset/
